@@ -26,31 +26,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         etPazT = (EditText)findViewById(R.id.etPazartesiT);
         etPazM = (EditText)findViewById(R.id.etPazartesiM);
         etSalM = (EditText)findViewById(R.id.etSaliM);
         etSalT = (EditText)findViewById(R.id.etSaliT);
-        etCarM = (EditText)findViewById(R.id.etCarsambaM);
-        etCarT = (EditText)findViewById(R.id.etCArsambaT);
-        etPerM = (EditText)findViewById(R.id.etPersembeM);
-        etPerT = (EditText)findViewById(R.id.etPersembeT);
-        etCumM = (EditText)findViewById(R.id.etCumaM);
-        etCumT = (EditText)findViewById(R.id.etCumaT);
 
         veriAl();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Menu Güncellendi", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Gonder();
-            }
-        });
     }
 
     private void veriAl() {
@@ -106,83 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        DatabaseReference cc2 = c1.child("carsamba");
-        cc2.child("tarih").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                etCarT.setText(dataSnapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        cc2.child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                etCarM.setText(dataSnapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-        DatabaseReference cpe2 = c1.child("persembe");
-        cpe2.child("tarih").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                etPerT.setText(dataSnapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        cpe2.child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                etPerM.setText(dataSnapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-        DatabaseReference cu2 = c1.child("cuma");
-        cu2.child("tarih").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                etCumT.setText(dataSnapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        cu2.child("menu").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                etCumM.setText(dataSnapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
     }
 
     private void Gonder() {
@@ -199,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference cpmX = cp2X.child("kumanya");
         cpmX.setValue(etPazM.getText().toString());
 
-
         DatabaseReference cs2 = c1.child("sali");
         DatabaseReference cst = cs2.child("tarih");
         DatabaseReference csm = cs2.child("menu");
@@ -208,33 +112,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseReference cs2X = c1.child(etSalT.getText().toString());
         DatabaseReference csmX = cs2X.child("kumanya");
         csmX.setValue(etSalM.getText().toString());
-
-        DatabaseReference cc2 = c1.child("carsamba");
-        DatabaseReference cct = cc2.child("tarih");
-        DatabaseReference ccm = cc2.child("menu");
-        cct.setValue(etCarT.getText().toString());
-        ccm.setValue(etCarM.getText().toString());
-        DatabaseReference cc2X = c1.child(etCarT.getText().toString());
-        DatabaseReference ccmX = cc2X.child("kumanya");
-        ccmX.setValue(etCarM.getText().toString());
-
-        DatabaseReference cpe2 = c1.child("persembe");
-        DatabaseReference cpet = cpe2.child("tarih");
-        DatabaseReference cpem = cpe2.child("menu");
-        cpet.setValue(etPerT.getText().toString());
-        cpem.setValue(etPerM.getText().toString());
-        DatabaseReference cpe2X = c1.child(etPerT.getText().toString());
-        DatabaseReference cpemX = cpe2X.child("kumanya");
-        cpemX.setValue(etPerM.getText().toString());
-
-        DatabaseReference cu2 = c1.child("cuma");
-        DatabaseReference cut = cu2.child("tarih");
-        DatabaseReference cum = cu2.child("menu");
-        cut.setValue(etCumT.getText().toString());
-        cum.setValue(etCumM.getText().toString());
-        DatabaseReference cu2X = c1.child(etCumT.getText().toString());
-        DatabaseReference cumX = cu2X.child("kumanya");
-        cumX.setValue(etCumM.getText().toString());
 
     }
 
