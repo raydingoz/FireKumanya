@@ -17,30 +17,12 @@ public class Kumanya extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kumanya);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
+        
         etTarih = (EditText)findViewById(R.id.etTarih);
         etKumanya = (EditText)findViewById(R.id.etKumanya);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Gonder();
-            }
-
-
-        });
-
-
-
     }
 
     private void Gonder() {
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference c1 = database.getReference("kumanya");
 
